@@ -1,21 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTab from './components/BottomTab';
+import { StateProvider } from './StateProvider';
+import reducer, {initialState} from './reducer';
 
 export default function App() {
+  //const[user, dispatch] = useStateValue();
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <NavigationContainer>
+        {/* The below tab shall only be accessible post login. */}
+        {/* We may have to add the reducer logic to have the session implemented */}
+        <BottomTab account={'h2o'} />
+      </NavigationContainer>
+    </StateProvider>
+    
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
