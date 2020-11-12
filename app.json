@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "mCart",
-    "slug": "mCart",
-    "version": "1.0.0",
+    "name": "mFlea",
+    "slug": "mFlea",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,8 +19,13 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.mshopi.mflea",
+      "versionCode": 1
+    },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

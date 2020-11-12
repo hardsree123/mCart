@@ -1,10 +1,55 @@
 export const initialState={
-    basket:[],
+    basket:[
+        {
+            capacity:"8 litres",
+            features:"Automatic Shut-Off , Corded , Manual",
+            imgurl:"https://images-na.ssl-images-amazon.com/images/I/71D3UYzwQvL._SS300_.jpg",
+            itemdesc:"Vivamus sit amet nisl commodo felis iaculis auctor at tincidunt augue. ",
+            itemname:"Livpure 15 ltr",
+            material:"ABS",
+            modelnumber:"11076B",
+            price:4522,
+            purificationmethod:"RO+UV+UF",
+            warranty:"1"
+        },
+        {
+            capacity:"8 litres",
+            features:"Automatic Shut-Off , Corded , Manual",
+            imgurl:"https://images-na.ssl-images-amazon.com/images/I/71D3UYzwQvL._SS300_.jpg",
+            itemdesc:"Vivamus sit amet nisl commodo felis iaculis auctor at tincidunt augue. ",
+            itemname:"Livpure 15 ltr",
+            material:"ABS",
+            modelnumber:"11076B",
+            price:4522,
+            purificationmethod:"RO+UV+UF",
+            warranty:"1",
+        },
+        {
+            capacity:"8 litres",
+            features:"Automatic Shut-Off , Corded , Manual",
+            imgurl:"https://images-na.ssl-images-amazon.com/images/I/71D3UYzwQvL._SS300_.jpg",
+            itemdesc:"Vivamus sit amet nisl commodo felis iaculis auctor at tincidunt augue. ",
+            itemname:"Livpure 15 ltr",
+            material:"ABS",
+            modelnumber:"11076B",
+            price:4522,
+            purificationmethod:"RO+UV+UF",
+            warranty:"1"
+        }
+    ],
     selected:[]
 };
 
-
 export const getBasketTotal=(basket)=> basket?.reduce((amount, item)=>item.price + amount, 0 );
+export const getItemNameGrouped=(basket, key)=> basket?.reduce((result, currentValue) => {
+    // If an array already present for key, push it to the array. Else create an array and push the object
+    (result[currentValue[key]] = result[currentValue[key]] || []).push(
+        currentValue
+    );
+    // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+    return result;
+    }, {});
+
 const reducer = (state, action)=>{
    
     switch(action.type){

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { useStateValue } from '../StateProvider'
 import ProductDetail from '../screens/ProductDetail';
 
+
 function Details({navigation}) {
     const[{selected}] = useStateValue();
     
@@ -12,7 +13,7 @@ function Details({navigation}) {
             selected?.length === 0 ? (
                 <Text>You dont have items to view details of</Text>
             ):(
-                <ProductDetail/>
+                <ProductDetail navigation={navigation}/>
             )
             }   
             {/* <ProductDetail item={item}/> */}

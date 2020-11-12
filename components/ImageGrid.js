@@ -1,7 +1,8 @@
 import React,  { useState } from 'react';
 import {useStateValue} from "../StateProvider";
-import { Image,StyleSheet,View,Text, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet,View,Text, TouchableOpacity,Platform, ActivityIndicator} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+// import { Image } from 'react-native-elements';
 
 function ImageGrid({item, navigation}, ref) {
   const[{}, dispatch]=useStateValue();
@@ -32,12 +33,13 @@ function ImageGrid({item, navigation}, ref) {
         }
         >
           <Image
-            style={styles.imagegrid__img}
-            source={{
-                  uri: item.imgurl,
-                  //cache: 'only-if-cached'
-                }}
-          />
+          style={styles.imagegrid__img}
+          source={{
+                uri: item.imgurl,
+                cache: 'only-if-cached'
+              }}
+          PlaceholderContent={<ActivityIndicator />}  
+        />
            <Text style={styles.itemName}>{item.itemname}</Text>
            <Text style={styles.itemCode}>{item.modelnumber}</Text>
         </TouchableOpacity>

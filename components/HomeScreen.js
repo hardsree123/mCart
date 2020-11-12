@@ -1,18 +1,30 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, LayoutAnimation, RefreshControl  } from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import ImageGrid from './ImageGrid';
 import { FlatGrid } from 'react-native-super-grid';
-import FlipMove from 'react-flip-move';
+import db from '../Firebase';
 // import {useStateValue} from "../StateProvider";
 
 // Set the default number of images to load for each pagination.
 const PAGE_SIZE = 5;
 
-function HomeScreen({products, navigation}) {
-    // const[{}, dispatch]=useStateValue();
+function HomeScreen({route, navigation}) {
+  // //this will set the data to be received for a shop (fleas).
+   const[products,setProducts] = useState([]);
+  // const[{basket}] = useStateValue();
+  // //this will load the entire data from the store.
+  //const[fleaname] = route.params;
+  useEffect(() => {
+    //this will fetch all products listed under a flea
+    db.collection(route.params.flea).onSnapshot(snapshot=>
+      (
+        setProducts(snapshot.docs.map(doc=>doc.data()))
+      )
+      )
+  }, [products]);
+    
     return (
-      <FlipMove> 
-        <FlatGrid
+      <ScrollView showsVerticalScrollIndicator={false}><FlatGrid
           itemDimension={130}
           data={products}
           style={styles.gridView}
@@ -23,8 +35,7 @@ function HomeScreen({products, navigation}) {
             <ImageGrid key={item.id} item={item} navigation={navigation}/>
           )}
         />
-    </FlipMove>
-        
+         </ScrollView>
     )
 }
 

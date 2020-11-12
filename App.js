@@ -1,20 +1,20 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import BottomTab from './components/BottomTab';
-import { StateProvider } from './StateProvider';
-import reducer, {initialState} from './reducer';
+import 'react-native-gesture-handler';
+import React,{useState} from 'react';
+import {StatusBar, Platform} from 'react-native';
+import { Provider as PaperProvider} from 'react-native-paper';
+import Headbar from './components/Headbar';
+import Main from './Main';
 
 export default function App() {
-  //const[user, dispatch] = useStateValue();
+  const styleTypes = ['default','dark-content', 'light-content'];
+  const [styleStatusBar] = useState(styleTypes[0]);
 
   return (
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <NavigationContainer>
-        {/* The below tab shall only be accessible post login. */}
-        {/* We may have to add the reducer logic to have the session implemented */}
-        <BottomTab account={'h2o'} />
-      </NavigationContainer>
-    </StateProvider>
-    
+   
+       <PaperProvider>
+        {Platform.OS === 'ios' && Platform.OS=='android' && <StatusBar backgroundColor="blue" barStyle={styleStatusBar} />}
+          <Main/>
+      </PaperProvider>
+   
   );
 }
